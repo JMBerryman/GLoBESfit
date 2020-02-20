@@ -17,7 +17,7 @@ See the documentation for more details on the experiments we've included and how
 Documentation
 =============
 
-`GLoBESfit` is extensively documented in an upcoming publication - check back soon for an arXiv number!
+`GLoBESfit` will be extensively documented in an upcoming publication - check back soon for an arXiv number!
 
 Installation
 ============
