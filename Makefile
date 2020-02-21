@@ -34,7 +34,7 @@
 # For linking against a specific version of GLoBES, libglobes.so can be 
 # replaced by the respective library, such as libglobes.so.0.0.1s
 
-prefix = /home/jeffb17/Research/globes-3.2.17.0
+prefix = /usr/local
 exec_prefix = ${prefix}
 libdir = ${exec_prefix}/lib
 globesconf= $(exec_prefix)/bin/globes-config
