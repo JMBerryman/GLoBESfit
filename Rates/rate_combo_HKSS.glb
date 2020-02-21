@@ -6,10 +6,8 @@
 
   The overall number of events will be irrelevant for what we want to calculate
   in this module, so we elect to set @time, @power and @target_mass all to unity.
-  (We could do the same to @norm, but I'm leaving it as 1e-3 for posterity -- as a
-  reminder that the units of the cross-section file are in MeV instead of GeV. Maybe?)
 
-  THIS FILE CONTAINS ONLY SHORT-BASELINE EXPERIMENTS
+  THIS FILE CONTAIN_HKSSS ONLY SHORT-BASELINE EXPERIMENTS
 */
 
 /*********************************************************************************
@@ -34,32 +32,31 @@
  $version="3.2.17.0"
  $oscillation_engine="bugey_rate" 
 
-
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -73,7 +70,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -98,9 +95,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -125,7 +121,8 @@ channel(#Pu241_CC)<
 rule(#U235)<
  	@signal = 1@#U235_CC
 	@background = 0@#U235_CC
-	@sys_on_function = "rate-combo-no-sys"
+	@sys_on_function = "rate-combo-HKSS"
+	@sys_on_errors = {0.02317, 0.11289, 0.02739, 0.02386}
 	@sys_off_function = "chiZero"
 > 
 
@@ -185,28 +182,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -220,7 +217,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -245,9 +242,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -333,28 +329,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -368,7 +364,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -393,9 +389,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -475,28 +470,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -510,7 +505,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -535,9 +530,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -616,28 +610,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -651,7 +645,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -670,15 +664,14 @@ $filter_value = 0.0001
 
 energy(#ERES)<
 	@type = 1
-	@sigma_e = {0., 0.00569, 0.0}
+	@sigma_e = {0.0, 0.00569, 0.0}
 >
 
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -757,28 +750,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
-201
+
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -792,7 +785,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -811,15 +804,14 @@ $filter_value = 0.0001
 
 energy(#ERES)<
 	@type = 1
-	@sigma_e = {0., 0.00569, 0.0}
+	@sigma_e = {0.0, 0.00569, 0.0}
 >
 
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -898,28 +890,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -933,7 +925,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -952,15 +944,14 @@ $filter_value = 0.0001
 
 energy(#ERES)<
 	@type = 1
-	@sigma_e = {0., 0.00569, 0.0}
+	@sigma_e = {0.0, 0.00569, 0.0}
 >
 
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-	@cross_file = "IBDnew.dat"
+	@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -1040,7 +1031,7 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -1054,7 +1045,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -1073,13 +1064,13 @@ $filter_value = 0.0001
 
 energy(#ERES)<
 	@type = 1
-	@sigma_e = {0., 0.00569, 0.0}
+	@sigma_e = {0.0, 0.00569, 0.0}
 >
 
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-	@cross_file = "IBDnew.dat"
+	@cross_file = "Fluxes/IBDnew.dat"
 >
 
 /* ####### Channel definitions ####### */
@@ -1128,7 +1119,7 @@ rule(#U235)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -1142,7 +1133,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -1167,9 +1158,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -1217,7 +1207,7 @@ rule(#U235)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -1231,7 +1221,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -1256,9 +1246,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -1303,7 +1292,7 @@ rule(#U235)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -1317,7 +1306,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -1342,9 +1331,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -1395,7 +1383,7 @@ rule(#U235)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -1409,7 +1397,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -1434,9 +1422,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -1481,7 +1468,7 @@ rule(#U235)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -1495,7 +1482,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -1520,9 +1507,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -1567,7 +1553,7 @@ rule(#U235)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -1581,7 +1567,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -1606,9 +1592,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -1660,28 +1645,28 @@ rule(#U235)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -1695,9 +1680,9 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
-$sampling_points=251
+$sampling_points=201
 
 /* ######## Baseline setting ######## */
 
@@ -1720,9 +1705,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -1802,28 +1786,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -1837,9 +1821,9 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
-$sampling_points=251
+$sampling_points=201
 
 /* ######## Baseline setting ######## */
 
@@ -1862,9 +1846,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 
@@ -1947,28 +1930,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -1982,7 +1965,7 @@ $target_mass = 	        100.0  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0018	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0080	/* GeV */
 
 $sampling_points=201
 
@@ -2007,9 +1990,8 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
-
 
 /* ####### Channel definitions ####### */
 

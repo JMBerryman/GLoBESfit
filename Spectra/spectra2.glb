@@ -6,8 +6,6 @@
 
   The overall number of events will be irrelevant for what we want to calculate
   in this module, so we elect to set @time, @power and @target_mass all to unity.
-  (We could do the same to @norm, but I'm leaving it as 1e-3 for posterity -- as a
-  reminder that the units of the cross-section file are in MeV instead of GeV. Maybe?)
 
   This particular file deals with spectral measurements. The order of experiments is as
   follows:
@@ -35,10 +33,6 @@
 
   15 - RENO ND
   16 - RENO FD
-
-  17-22 - PROSPECT (6.9m, 7.3m, 7.8m, 8.2m, 8.6m, 9.2m)
-
-  23-28 - STEREO (Cells 1-6)
 
   THIS FILE CONTAINS ONLY DAYA BAY NEAR DETECTORS
 */
@@ -119,28 +113,28 @@
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235_SM.dat"
+	@flux_file="Fluxes/Pure_U235_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 0.8050
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238_SM.dat"
+	@flux_file="Fluxes/Pure_U238_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 0.8050
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239_SM.dat"
+	@flux_file="Fluxes/Pure_Pu239_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 0.8050
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241_SM.dat"
+	@flux_file="Fluxes/Pure_Pu241_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 0.8050
@@ -179,7 +173,7 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
 
 /* ####### Channel definitions ####### */
@@ -294,28 +288,28 @@ rule(#Pu241_0)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235_SM.dat"
+	@flux_file="Fluxes/Pure_U235_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.12256 	/* GW thermal */
 	@norm =  0.8013
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238_SM.dat"
+	@flux_file="Fluxes/Pure_U238_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.12256 	/* GW thermal */
 	@norm =  0.8013
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239_SM.dat"
+	@flux_file="Fluxes/Pure_Pu239_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.12256 	/* GW thermal */
 	@norm =  0.8013
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241_SM.dat"
+	@flux_file="Fluxes/Pure_Pu241_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.12256 	/* GW thermal */
 	@norm =  0.8013
@@ -354,7 +348,7 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
 
 /* ####### Channel definitions ####### */
@@ -469,28 +463,28 @@ rule(#Pu241_0)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235_SM.dat"
+	@flux_file="Fluxes/Pure_U235_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.12256 	/* GW thermal */
 	@norm = 0.8369
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238_SM.dat"
+	@flux_file="Fluxes/Pure_U238_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.12256 	/* GW thermal */
 	@norm = 0.8369
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239_SM.dat"
+	@flux_file="Fluxes/Pure_Pu239_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.12256 	/* GW thermal */
 	@norm = 0.8369
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241_SM.dat"
+	@flux_file="Fluxes/Pure_Pu241_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.12256 	/* GW thermal */
 	@norm = 0.8369
@@ -529,7 +523,7 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
 
 /* ####### Channel definitions ####### */
@@ -600,28 +594,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235_SM.dat"
+	@flux_file="Fluxes/Pure_U235_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 0.8360
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238_SM.dat"
+	@flux_file="Fluxes/Pure_U238_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 0.8360
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239_SM.dat"
+	@flux_file="Fluxes/Pure_Pu239_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 0.8360
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241_SM.dat"
+	@flux_file="Fluxes/Pure_Pu241_SM.dat"
 	@time = 10000.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 0.8360
@@ -660,7 +654,7 @@ energy(#ERES)<
 /* ####### Cross sections ####### */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
 
 /* ####### Channel definitions ####### */

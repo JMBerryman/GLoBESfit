@@ -6,8 +6,6 @@
 
   The overall number of events will be irrelevant for what we want to calculate
   in this module, so we elect to set @time, @power and @target_mass all to unity.
-  (We could do the same to @norm, but I'm leaving it as 1e-3 for posterity -- as a
-  reminder that the units of the cross-section file are in MeV instead of GeV. Maybe?)
 
   THIS FILE CONTAINS ONLY MEDIUM-BASELINE, RATE EVOLUTION EXPERIMENTS
 */
@@ -88,28 +86,28 @@
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235_HKSS.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4336.16 	/* GW thermal */
 	@norm = 0.8050
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238_HKSS.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4336.16 	/* GW thermal */
 	@norm = 0.8050
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239_HKSS.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4336.16 	/* GW thermal */
 	@norm = 0.8050
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241_HKSS.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4336.16 	/* GW thermal */
 	@norm = 0.8050
@@ -154,7 +152,7 @@ energy(#ERES)<
 /* NEED TO FIX THE CROSS SECTIONS!!!! */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
 
 
@@ -226,28 +224,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235_HKSS.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4871.92 	/* GW thermal */
 	@norm =  0.8013
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238_HKSS.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4871.92 	/* GW thermal */
 	@norm =  0.8013
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239_HKSS.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4871.92 	/* GW thermal */
 	@norm =  0.8013
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241_HKSS.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4871.92 	/* GW thermal */
 	@norm =  0.8013
@@ -292,7 +290,7 @@ energy(#ERES)<
 /* NEED TO FIX THE CROSS SECTIONS!!!! */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
 
 
@@ -364,28 +362,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235_HKSS.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4930.39 	/* GW thermal */
 	@norm = 0.8369
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238_HKSS.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4930.39 	/* GW thermal */
 	@norm = 0.8369
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239_HKSS.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4930.39 	/* GW thermal */
 	@norm = 0.8369
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241_HKSS.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4930.39 	/* GW thermal */
 	@norm = 0.8369
@@ -430,7 +428,7 @@ energy(#ERES)<
 /* NEED TO FIX THE CROSS SECTIONS!!!! */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
 
 
@@ -502,28 +500,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235_HKSS.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4397.76 	/* GW thermal */
 	@norm = 0.8360
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238_HKSS.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4397.76 	/* GW thermal */
 	@norm = 0.8360
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239_HKSS.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time =1.0		/* years */
 	@power = 4397.76 	/* GW thermal */
 	@norm = 0.8360
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241_HKSS.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 4397.76 	/* GW thermal */
 	@norm = 0.8360
@@ -568,7 +566,7 @@ energy(#ERES)<
 /* NEED TO FIX THE CROSS SECTIONS!!!! */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
 
 
@@ -667,28 +665,28 @@ rule(#Pu241)<
 /* ####### Reactor flux ####### */
 
 nuflux(#PureU235)<
-	@flux_file="Pure_U235_HKSS.dat"
+	@flux_file="Fluxes/Pure_U235_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PureU238)<
-	@flux_file="Pure_U238_HKSS.dat"
+	@flux_file="Fluxes/Pure_U238_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu239)<
-	@flux_file="Pure_Pu239_HKSS.dat"
+	@flux_file="Fluxes/Pure_Pu239_HKSS.dat"
 	@time =1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
 >
 
 nuflux(#PurePu241)<
-	@flux_file="Pure_Pu241_HKSS.dat"
+	@flux_file="Fluxes/Pure_Pu241_HKSS.dat"
 	@time = 1.0		/* years */
 	@power = 1.0 	/* GW thermal */
 	@norm = 1.0
@@ -733,7 +731,7 @@ energy(#ERES)<
 /* NEED TO FIX THE CROSS SECTIONS!!!! */
 
 cross(#Reactor_CC)<
-@cross_file = "IBDnew.dat"
+@cross_file = "Fluxes/IBDnew.dat"
 >
 
 

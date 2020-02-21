@@ -567,33 +567,48 @@ glbDefineOscEngine(NUMP, &DB_EH2_AD8_probability_matrix,
 
   if (arguments.HKSS==YES){
   /* Sterile oscillations using HKSS FLUXES */
-    s=glbInitExperiment("rate_combo_HKSS.glb",&glb_experiment_list[0],&glb_num_of_exps);
-    s2=glbInitExperiment("rate_combo_HKSS2.glb",&glb_experiment_list[0],&glb_num_of_exps);
-    s3=glbInitExperiment("rate_combo_HKSS3.glb",&glb_experiment_list[0],&glb_num_of_exps);
+    s=glbInitExperiment("Rates/rate_combo_HKSS.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s2=glbInitExperiment("Rates/rate_combo_HKSS2.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s3=glbInitExperiment("Rates/rate_combo_HKSS3.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
   }
   else if (arguments.SumMethod==YES){
   /* Sterile oscillations using SUMMATION METHOD FLUXES */
-    s=glbInitExperiment("rate_combo_SM.glb",&glb_experiment_list[0],&glb_num_of_exps);
-    s2=glbInitExperiment("rate_combo_SM2.glb",&glb_experiment_list[0],&glb_num_of_exps);
-    s3=glbInitExperiment("rate_combo_SM3.glb",&glb_experiment_list[0],&glb_num_of_exps);
+    s=glbInitExperiment("Rates/rate_combo_SM.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s2=glbInitExperiment("Rates/rate_combo_SM2.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s3=glbInitExperiment("Rates/rate_combo_SM3.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
   }
   else if (arguments.Unfix==YES){
   /* Unfix U235 and Pu239 fluxes; NO OSCILLATIONS HERE */
-    s=glbInitExperiment("rate_combo_unfix.glb",&glb_experiment_list[0],&glb_num_of_exps);
-    s2=glbInitExperiment("rate_combo2.glb",&glb_experiment_list[0],&glb_num_of_exps);
-    s3=glbInitExperiment("rate_combo3.glb",&glb_experiment_list[0],&glb_num_of_exps);
+    s=glbInitExperiment("Rates/rate_combo_unfix.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s2=glbInitExperiment("Rates/rate_combo2.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s3=glbInitExperiment("Rates/rate_combo3.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
   }
   else if (arguments.Systematics==YES){
   /* Sterile oscillations WITH flux prediction systematics */
-    s=glbInitExperiment("rate_combo.glb",&glb_experiment_list[0],&glb_num_of_exps);
-    s2=glbInitExperiment("rate_combo2.glb",&glb_experiment_list[0],&glb_num_of_exps);
-    s3=glbInitExperiment("rate_combo3.glb",&glb_experiment_list[0],&glb_num_of_exps);
+    s=glbInitExperiment("Rates/rate_combo.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s2=glbInitExperiment("Rates/rate_combo2.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s3=glbInitExperiment("Rates/rate_combo3.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
   }
   else{
   /* Sterile oscillations WITHOUT flux prediction systematics */
-    s=glbInitExperiment("rate_combo_no_sys.glb",&glb_experiment_list[0],&glb_num_of_exps);
-    s2=glbInitExperiment("rate_combo2.glb",&glb_experiment_list[0],&glb_num_of_exps);
-    s3=glbInitExperiment("rate_combo3.glb",&glb_experiment_list[0],&glb_num_of_exps);
+    s=glbInitExperiment("Rates/rate_combo_no_sys.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s2=glbInitExperiment("Rates/rate_combo2.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s3=glbInitExperiment("Rates/rate_combo3.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
   }
 
   /* Testing for failure */

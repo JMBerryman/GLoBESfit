@@ -487,13 +487,19 @@ glbDefineOscEngine(NUMP, &RENO_FD_probability_matrix,
 
 /* Loading in experiment files... */
 
-  s=glbInitExperiment("spectra.glb",&glb_experiment_list[0],&glb_num_of_exps);
-  s2=glbInitExperiment("spectra2.glb",&glb_experiment_list[0],&glb_num_of_exps);
-  s3=glbInitExperiment("spectra3.glb",&glb_experiment_list[0],&glb_num_of_exps);
+  s=glbInitExperiment("Spectra/spectra.glb",&glb_experiment_list[0],
+	&glb_num_of_exps);
+  s2=glbInitExperiment("Spectra/spectra2.glb",&glb_experiment_list[0],
+	&glb_num_of_exps);
+  s3=glbInitExperiment("Spectra/spectra3.glb",&glb_experiment_list[0],
+	&glb_num_of_exps);
 
-  s4=glbInitExperiment("spectra4.glb",&glb_experiment_list[0],&glb_num_of_exps);
-  s5=glbInitExperiment("spectra5.glb",&glb_experiment_list[0],&glb_num_of_exps);
-  s6=glbInitExperiment("spectra6.glb",&glb_experiment_list[0],&glb_num_of_exps);
+  s4=glbInitExperiment("Spectra/spectra4.glb",&glb_experiment_list[0],
+	&glb_num_of_exps);
+  s5=glbInitExperiment("Spectra/spectra5.glb",&glb_experiment_list[0],
+	&glb_num_of_exps);
+  s6=glbInitExperiment("Spectra/spectra6.glb",&glb_experiment_list[0],
+	&glb_num_of_exps);
 
   /* Testing for failure */
 

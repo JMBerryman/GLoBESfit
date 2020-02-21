@@ -34,14 +34,12 @@
 # For linking against a specific version of GLoBES, libglobes.so can be 
 # replaced by the respective library, such as libglobes.so.0.0.1s
 
-
 prefix = /home/jeffb17/Research/globes-3.2.17.0
 exec_prefix = ${prefix}
 libdir = ${exec_prefix}/lib
 globesconf= $(exec_prefix)/bin/globes-config
 
 #$(error globesconf="$(globesconf)")
-
 
 local_CFLAGS = -g -O3 -Wall -W -w
 INCFLAGS:=$(shell $(globesconf) --include)
@@ -51,16 +49,17 @@ lapack = -llapack -lblas -lf2c
 #gitversion:=$(shell git-rev-list  HEAD --max-count=1)
 
 BIN = GLoBESfit_rate GLoBESfit_spectra
-OBJ = main_rate.o main_spectra.o rate_combo.o spectra.o rate_funcs.o SBL_funcs.o LBL_funcs.o
+OBJ = Rates/main_rate.o Spectra/main_spectra.o Rates/rate_combo.o Spectra/spectra.o Rates/rate_funcs.o Spectra/SBL_funcs.o Spectra/LBL_funcs.o
 
 all: $(BIN)
 
-GLoBESfit_rate: rate_combo.o main_rate.o rate_funcs.o
+GLoBESfit_rate: Rates/rate_combo.o Rates/main_rate.o Rates/rate_funcs.o
 	g++ rate_combo.o main_rate.o rate_funcs.o -o\
 	 GLoBESfit_rate $(LDFLAGS)  $(local_LDFLAGS)
 
-GLoBESfit_spectra: main_spectra.o spectra.o SBL_funcs.o LBL_funcs.o
-	g++ main_spectra.o spectra.o SBL_funcs.o LBL_funcs.o -o\
+GLoBESfit_spectra: Spectra/main_spectra.o Spectra/spectra.o Spectra/SBL_funcs.o Spectra/LBL_funcs.o
+
+g++ main_spectra.o spectra.o SBL_funcs.o LBL_funcs.o -o\
 	 GLoBESfit_spectra $(LDFLAGS)  $(local_LDFLAGS)
 
 %.o : %.c
