@@ -28,11 +28,11 @@ git clone https://github.com/JMBerryman/GLoBESfit.git
 cd GLoBESfit
 ```
 
-A `Makefile` has been included as a part of `GLoBESfit`. The only user-required input here is the location of their `GLoBES` directory. By default, the relevant line of the `Makefile` reads:
+A `Makefile` has been included as a part of `GLoBESfit`. The only potential user-required input here is the location of the `GLoBES` directory. By default, the relevant line of the `Makefile` reads:
 ```bash
-prefix = /home/jeffb17/Research/globes-3.2.17.0
+prefix = /usr/local
 ```
-Once the user has changed this line as needed, they need simply run
+If the user has their `GLoBES` directories installed elsewhere, then they will need to modify this line. Once the user has changed this line as needed, they need simply run
 ```bash
 make
 ```
