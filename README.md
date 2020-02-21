@@ -46,6 +46,11 @@ and the spectral-ratio analysis can be executed with
 ```
 It's as easy as that! (The user should review the documentation for explanations on how to use or ignore different experiments within a given analysis, how to use different reactor antineutrino fluxes, etc. This isn't available quite yet, but we're getting there!)
 
+Data Release
+============
+
+In addition to releasing our software, we have also provided the results of our calculations that we used to generate the result presented in (NEED ARXIV NUMBER). See the folders `RateResults` and `SpectraResults` for more details about which files we have provided.
+
 Referencing `GLoBESfit`
 =======================
 
