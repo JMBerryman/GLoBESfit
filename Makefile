@@ -58,7 +58,8 @@ GLoBESfit_rate: Rates/rate_combo.o Rates/main_rate.o Rates/rate_funcs.o
 	 GLoBESfit_rate $(LDFLAGS)  $(local_LDFLAGS)
 
 GLoBESfit_spectra: Spectra/main_spectra.o Spectra/spectra.o Spectra/SBL_funcs.o Spectra/LBL_funcs.o
-	g++ main_spectra.o spectra.o SBL_funcs.o LBL_funcs.o -o\
+
+g++ main_spectra.o spectra.o SBL_funcs.o LBL_funcs.o -o\
 	 GLoBESfit_spectra $(LDFLAGS)  $(local_LDFLAGS)
 
 %.o : %.c
