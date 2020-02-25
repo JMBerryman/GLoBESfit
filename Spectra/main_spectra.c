@@ -236,7 +236,7 @@ int main(int argc, char *argv[])
   int NUMP=10;
 
   double *osc=NULL;
-  double xrange[]={-3,0};
+  double xrange[]={-4,0};
   double yrange[]={-2,2};
   struct arguments arguments;
 
