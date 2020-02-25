@@ -1,4 +1,4 @@
-/* (C) 2005, 2007, 2019 Patrick Huber, J.M. Berryman */
+/* (C) 2005, 2007, 2020 Patrick Huber, J.M. Berryman */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,7 +11,7 @@
 #include "spectra.h"
 
 #include "SBL_funcs.h"
-#include "LBL_funcs.h"
+#include "MBL_funcs.h"
 
 #define VERSION "1.0"
 #define MAXNUM 12 /* largest possible number of oscillation parameters */
@@ -23,7 +23,7 @@ int N;
 double systematic[10];
 
 const char *argp_program_version =
-"GLoBESfit_spectra "VERSION"\n(C) 2007, 2019 Patrick Huber & J. M. Berryman \n"
+"GLoBESfit_spectra "VERSION"\n(C) 2007, 2020 Patrick Huber & J. M. Berryman \n"
 "git revision "GT" \n"
 "This is *NOT* free software see the source for copying conditions. There is NO\n"
 "warranty; not even for MERCHANTABILITY or"
@@ -31,7 +31,7 @@ const char *argp_program_version =
 const char *argp_program_bug_address = "pahuber@vt.edu or jeffb17@vt.edu";
 
 /* Program documentation. */
-static char doc[] ="Data fitting for SBL experiments with GLoBES";
+static char doc[] ="Data fitting for reactor antineutrino spectrum experiments with GLoBES";
 
 /* A description of the arguments we accept. */
 static char args_doc[] = "(No Inputs Allowed!)";
@@ -236,7 +236,7 @@ int main(int argc, char *argv[])
   int NUMP=10;
 
   double *osc=NULL;
-  double xrange[]={-3,0};
+  double xrange[]={-4,0};
   double yrange[]={-2,2};
   struct arguments arguments;
 

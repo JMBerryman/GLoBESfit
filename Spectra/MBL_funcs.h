@@ -1,5 +1,5 @@
-#ifndef LBL_FUNCS
-#define LBL_FUNCS
+#ifndef MBL_FUNCS
+#define MBL_FUNCS
 
 #define YES 1
 #define NO -1
@@ -74,4 +74,4 @@ int RENO_FD_probability_matrix(double P[3][3], int cp_sign, double E, int psteps
 
 /**************************************************************************/
 
-#endif /* !LBL_FUNCS */
+#endif /* !MBL_FUNCS */

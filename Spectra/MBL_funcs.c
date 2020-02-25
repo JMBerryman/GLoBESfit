@@ -7,8 +7,7 @@
 #include <gsl/gsl_sf_expint.h>
 #include <globes/globes.h>   /* GLoBES library */
 
-#include "spectra.h"
-
+#include "MBL_funcs.h"
 #include "spectra_aux.h"
 #include "spectra_aux2.h"
 

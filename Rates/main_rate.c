@@ -1,4 +1,4 @@
-/* (C) 2005, 2007, 2019 Patrick Huber, J. M. Berryman */
+/* (C) 2005, 2007, 2020 Patrick Huber, J. M. Berryman */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,15 +21,15 @@ int N;
 double systematic[10];
 
 const char *argp_program_version =
-"GLoBESfit_rate "VERSION"\n(C) 2007, 2019 Patrick Huber & J. M. Berryman \n"
+"GLoBESfit_rate "VERSION"\n(C) 2007, 2020 Patrick Huber & J. M. Berryman \n"
 "git revision "GT" \n"
 "This is *NOT* free software see the source for copying conditions. There is NO\n"
 "warranty; not even for MERCHANTABILITY or"
 " FITNESS FOR A PARTICULAR PURPOSE.";
-const char *argp_program_bug_address = "pahuber@vt.edu or jeffb17@vt.edu";
+const char *argp_program_bug_address = "pahuber@vt.edu or jeffreyberryman0814@gmail.com";
 
 /* Program documentation. */
-static char doc[] ="Data fitting for SBL experiments with GLoBES";
+static char doc[] ="Data fitting for reactor antineutrino rate experiments with GLoBES";
 
 /* A description of the arguments we accept. */
 static char args_doc[] = "(No Inputs Allowed!)";
