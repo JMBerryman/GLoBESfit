@@ -1,4 +1,4 @@
-/* (C) 2005, 2007, 2019 Patrick Huber, J.M. Berryman */
+/* (C) 2005, 2007, 2020 Patrick Huber, J.M. Berryman */
 
 #include <stdio.h>
 #include <stdlib.h>
