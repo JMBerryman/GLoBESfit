@@ -9,8 +9,8 @@ Overview
 By default, `GLoBESfit` is designed to examine the evidence for the existence of one additional, sterile neutrino species. However, the user is free to modify the expressions for the oscillation probabilities to probe any new-physics scenario that they wish to investigate.
 
 `GLoBESfit` consists of two separate executables:
-  1. `GLoBESfit_rate` executes an analysis of measurements of the inverse beta decay (IBD) *rate measurements* performed at the following experiments: Bugey-3, Bugey-4, Chooz, Daya Bay, Double Chooz, Gösgen, ILL, Krasnoyarsk (1987, 1994, 1999), Nucifer, Palo Verde, RENO, Rovno (1988, 1991) and Savannah River.
-  2. `GLoBESfit_spectra` executes an analysis of measurements of IBD *spectral measurements* performed at the following experiments: Bugey-3, DANSS, Daya Bay, Double Chooz, NEOS and RENO.
+  1. `glf_rate` executes an analysis of measurements of the inverse beta decay (IBD) *rate measurements* performed at the following experiments: Bugey-3, Bugey-4, Chooz, Daya Bay, Double Chooz, Gösgen, ILL, Krasnoyarsk (1987, 1994, 1999), Nucifer, Palo Verde, RENO, Rovno (1988, 1991) and Savannah River.
+  2. `glf_spectrum` executes an analysis of measurements of IBD *spectral measurements* performed at the following experiments: Bugey-3, DANSS, Daya Bay, Double Chooz, NEOS and RENO.
 
 See the documentation for more details on the experiments we've included and how `GLoBESfit` performs these analyses.
 
@@ -38,11 +38,11 @@ make
 ```
 At this point, the user can execute the rate analysis with
 ```bash
-./GLoBESfit_rate
+./glf_rate
 ```
 and the spectral-ratio analysis can be executed with
 ```bash
-./GLoBESfit_spectra
+./glf_spectrum
 ```
 It's as easy as that! (The user should review the documentation for explanations on how to use or ignore different experiments within a given analysis, how to use different reactor antineutrino fluxes, etc. This isn't available quite yet, but we're getting there!)
 
