@@ -20,7 +20,7 @@
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-/* (C) 2019 Jeffrey M. Berryman */
+/* (C) 2019, 2020 Patrick Huber, J. M. Berryman */
 
 #include <stdio.h>
 #include <stdlib.h>
