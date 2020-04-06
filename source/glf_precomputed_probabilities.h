@@ -191,11 +191,11 @@ glf_distance_data DB_EH3_AD7_s={.length=2001,.data=DB_EH3_AD7_prob};
 glf_distance_data RENO_ND_s={.length=1751,.data=RENO_ND_prob};
 glf_distance_data RENO_FD_s={.length=1751,.data=RENO_FD_prob};
 
-glf_distance_data DC_ND_s={.length=2001,.data=DC_ND_prob};
-glf_distance_data DC_FD_s={.length=1751,.data=DC_FD_prob};
-
 glf_distance_data DANSS_up_s={.length=301,.data=DANSS_up_prob};
 glf_distance_data DANSS_down_s={.length=301,.data=DANSS_down_prob};
+
+glf_distance_data DC_ND_s={.length=2001,.data=DC_ND_prob};
+glf_distance_data DC_FD_s={.length=1751,.data=DC_FD_prob};
 
 glf_distance_data NEOS_s={.length=301,.data=NEOS_prob};
 glf_distance_data bugey_15_s={.length=401,.data=bugey_15_prob};

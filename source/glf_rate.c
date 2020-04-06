@@ -579,30 +579,30 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   this code, as things currently stand, according to the presence of certain flags.
   The flags, and what they do are as follows:
 
-  -H: Uses the HKSS corrections to the HM fluxes, taken from 1908.08302
+  -S: Scan over sterile neutrino parameter space and *include* systematics on the
+	Huber-Mueller fluxes
 
   -M: Uses fluxes from summation method calculation of 1904.09358 to scan over
 	sterile neutrino parameter space; no systematics are included.
 
-  -U: Unfix the overall HM fluxes for U235 and Pu239 and scan over these
+  -H: Uses the HKSS corrections to the HM fluxes, taken from 1908.08302
 
-  -S: Scan over sterile neutrino parameter space and *include* systematics on the
-	Huber-Mueller fluxes
+  -u: Unfix the overall HM fluxes for U235 and Pu239 and scan over these
 
   <none of these>: Scan over sterile neutrino parameter space and *ignore* 
 	systematics on the Huber-Mueller fluxes
 
   These are listed in order of precedence, i.e., -M and -S causes the code to run
-  in "-M" mode
+  in "-S" mode
 */
 
-  if (arguments.HKSS==YES){
-  /* Sterile oscillations using HKSS FLUXES */
-    s=glbInitExperiment("glb/rate_combo_HKSS.glb",&glb_experiment_list[0],
+  if (arguments.Systematics==YES){
+  /* Sterile oscillations WITH flux prediction systematics */
+    s=glbInitExperiment("glb/rate_combo.glb",&glb_experiment_list[0],
 		&glb_num_of_exps);
-    s2=glbInitExperiment("glb/rate_combo_HKSS2.glb",&glb_experiment_list[0],
+    s2=glbInitExperiment("glb/rate_combo2.glb",&glb_experiment_list[0],
 		&glb_num_of_exps);
-    s3=glbInitExperiment("glb/rate_combo_HKSS3.glb",&glb_experiment_list[0],
+    s3=glbInitExperiment("glb/rate_combo3.glb",&glb_experiment_list[0],
 		&glb_num_of_exps);
   }
   else if (arguments.SumMethod==YES){
@@ -614,18 +614,18 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
     s3=glbInitExperiment("glb/rate_combo_SM3.glb",&glb_experiment_list[0],
 		&glb_num_of_exps);
   }
+  else if (arguments.HKSS==YES){
+  /* Sterile oscillations using HKSS FLUXES */
+    s=glbInitExperiment("glb/rate_combo_HKSS.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s2=glbInitExperiment("glb/rate_combo_HKSS2.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+    s3=glbInitExperiment("glb/rate_combo_HKSS3.glb",&glb_experiment_list[0],
+		&glb_num_of_exps);
+  }
   else if (arguments.Unfix==YES){
   /* Unfix U235 and Pu239 fluxes; NO OSCILLATIONS HERE */
     s=glbInitExperiment("glb/rate_combo_unfix.glb",&glb_experiment_list[0],
-		&glb_num_of_exps);
-    s2=glbInitExperiment("glb/rate_combo2.glb",&glb_experiment_list[0],
-		&glb_num_of_exps);
-    s3=glbInitExperiment("glb/rate_combo3.glb",&glb_experiment_list[0],
-		&glb_num_of_exps);
-  }
-  else if (arguments.Systematics==YES){
-  /* Sterile oscillations WITH flux prediction systematics */
-    s=glbInitExperiment("glb/rate_combo.glb",&glb_experiment_list[0],
 		&glb_num_of_exps);
     s2=glbInitExperiment("glb/rate_combo2.glb",&glb_experiment_list[0],
 		&glb_num_of_exps);

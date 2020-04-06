@@ -1,4 +1,4 @@
-/* GLoBESfit -- GLoBES fitting tools
+ /* GLoBESfit -- GLoBES fitting tools
 *  (C) 2019-2020 The GLoBESfit Team
 *
 * GLoBESfit is mainly intended for academic purposes. Proper
