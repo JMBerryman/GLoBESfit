@@ -584,15 +584,15 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   for(i=0;i<glbGetNumOfOscParams();i++){glbSetOscParams(input_errors,0,i);}
   for(i=0;i<glbGetNumOfOscParams();i++){glbSetProjectionFlag(proj,arguments.marg[i],i);}
 
-  glbSetOscParams(true_values, asin(sqrt(0.084))/2.0, MY_THETA_13);
-  glbSetOscParams(true_values, 0.0, MY_THETA_14);
-  glbSetOscParams(true_values, 1.0, MY_DELTA_M);
-  glbSetOscParams(true_values, 2.525e-3, MY_DELTA_ATM);
-  glbSetOscParams(true_values, 0.590, MY_THETA_12);
-  glbSetOscParams(true_values, 7.39e-5, MY_DELTA_SOLAR);
-
   glbSetDensityProjectionFlag(proj,GLB_FIXED,GLB_ALL);
   glbCopyParams(true_values,test_values);  
+
+  glbSetOscParams(test_values, asin(sqrt(0.084))/2.0, MY_THETA_13);
+  glbSetOscParams(test_values, 0.0, MY_THETA_14);
+  glbSetOscParams(test_values, 1.0, MY_DELTA_M);
+  glbSetOscParams(test_values, 2.525e-3, MY_DELTA_ATM);
+  glbSetOscParams(test_values, 0.590, MY_THETA_12);
+  glbSetOscParams(test_values, 7.39e-5, MY_DELTA_SOLAR);
   
   glbCopyParams(test_values,starting_values);
  
