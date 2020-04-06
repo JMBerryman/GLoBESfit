@@ -1,0 +1,337 @@
+%!GLoBES
+
+/* 
+  This file contains a combination of different experiments in constraining
+  the properties of antineutrinos coming from reactors...
+
+  The overall number of events will be irrelevant for what we want to calculate
+  in this module, so we elect to set @time, @power and @target_mass all to unity.
+
+  This particular file deals with spectral measurements. The order of experiments is as
+  follows:
+
+  0 - DANSS (upper position)
+  1 – DANSS (lower position)
+
+  2 - Daya Bay EH1 AD1 (special format to be compatible with NEOS)
+  3 - Daya Bay EH1 AD2 (special format to be compatible with NEOS)
+  4 - Daya Bay EH2 AD3 (special format to be compatible with NEOS)
+  5 - Daya Bay EH2 AD8 (special format to be compatible with NEOS)
+
+  6 - Daya Bay EH3 AD4
+  7 - Daya Bay EH3 AD5
+  8 - Daya Bay EH3 AD6
+  9 - Daya Bay EH3 AD7
+
+  10 - NEOS
+
+  11 - Double Chooz ND
+  12 - Double Chooz FD
+
+  13 - Bugey, 15 m
+  14 - Bugey, 40 m
+
+  15 - RENO ND
+  16 - RENO FD
+
+  THIS FILE CONTAINS ONLY DANSS
+*/
+
+/*********************************************************************************
+*                                                  
+*       DANSS ANALYSIS – UPPER POSITION
+* 
+* @article{Alekseev:2018efk,
+*       author         = "Alekseev, I and others",
+*       title          = "{Search for sterile neutrinos at the DANSS experiment}",
+*       collaboration  = "DANSS",
+*       journal        = "Phys. Lett.",
+*       volume         = "B787",
+*       year           = "2018",
+*       pages          = "56-63",
+*       doi            = "10.1016/j.physletb.2018.10.038",
+*       eprint         = "1804.04046",
+*       archivePrefix  = "arXiv",
+*       primaryClass   = "hep-ex",
+*       SLACcitation   = "%%CITATION = ARXIV:1804.04046;%%"
+* }
+* 
+**********************************************************************************/
+
+ $version="3.2.17.0"
+ $oscillation_engine="DANSS_upper" 
+
+/* ####### Reactor flux ####### */
+
+nuflux(#PureU235)<
+	@flux_file="Fluxes/Pure_U235_SM.dat"
+	@time = 1.0		/* years */
+	@power = 1.0 	/* GW thermal */
+	@norm = 1.0
+>
+
+nuflux(#PureU238)<
+	@flux_file="Fluxes/Pure_U238_SM.dat"
+	@time = 1.0		/* years */
+	@power = 1.0 	/* GW thermal */
+	@norm = 1.0
+>
+
+nuflux(#PurePu239)<
+	@flux_file="Fluxes/Pure_Pu239_SM.dat"
+	@time = 1.0		/* years */
+	@power = 1.0 	/* GW thermal */
+	@norm = 1.0
+>
+
+nuflux(#PurePu241)<
+	@flux_file="Fluxes/Pure_Pu241_SM.dat"
+	@time = 1.0		/* years */
+	@power = 1.0 	/* GW thermal */
+	@norm = 1.0
+>
+
+/* ####### Detector settings ####### */
+
+$target_mass = 	        1.0  /* tons (fiducial mass) */
+
+/* ####### Energy window ####### */
+
+$bins = 		32
+$emin = 	        0.0018	/* GeV */
+$emax = 	        0.0098	/* GeV */
+
+$sampling_points = 401
+$sampling_min = 0.0
+$sampling_max = 0.01
+
+/* ######## Baseline setting ######## */
+
+$profiletype = 		3 
+$densitytab = 		{0}
+$lengthtab = 		{0.01067} /* km */
+
+/* ######## Technical information ######## */
+
+$filter_state = 1
+$filter_value = 0.0001 
+
+/* ####### Energy resolution ####### */
+
+energy(#ERES)<
+	@type = 1
+	@sigma_e = {0.0868, 0.006, 0.0}
+>
+
+/* ####### Cross sections ####### */
+
+cross(#Reactor_CC)<
+@cross_file = "Fluxes/IBDnew.dat"
+>
+
+/* ####### Channel definitions ####### */
+
+channel(#U235_CC)<
+	@channel = 	#PureU235:	-:	e:	e:	#Reactor_CC:    #ERES
+>
+
+channel(#U238_CC)<
+	@channel = 	#PureU238:	-:	e:	e:	#Reactor_CC:    #ERES
+>
+
+channel(#Pu239_CC)<
+	@channel = 	#PurePu239:	-:	e:	e:	#Reactor_CC:    #ERES
+>
+
+channel(#Pu241_CC)<
+	@channel = 	#PurePu241:	-:	e:	e:	#Reactor_CC:    #ERES
+>
+
+/* ####### Setting the rules ####### */
+
+rule(#U235)<
+ 	@signal = 1@#U235_CC
+	@background = 0@#U235_CC
+
+	@sys_on_function = "spectra-chisq"
+
+/*
+  The systematic errors we include here are the energy scale uncertainties associated
+  with a subset of the spectral measurements. The ordering of these parameters is:
+
+	{DANSS, NEOS, BUGEY_15, BUGEY_40}
+
+  Note that we're giving the percent errors instead of the fractional errors; it's easier
+  to do the minimization using O(1) numbers
+*/
+        @sys_on_errors    = { 2.0, 0.5, 2.0, 2.0 }
+	@sys_off_function = "chiZero"
+> 
+
+rule(#U238)<
+ 	@signal = 1@#U238_CC
+	@background = 0@#U238_CC
+	@sys_on_function = "chiZero"
+	@sys_off_function = "chiZero"
+> 
+
+rule(#Pu239)<
+ 	@signal = 1@#Pu239_CC
+	@background = 0@#Pu239_CC
+	@sys_on_function = "chiZero"
+	@sys_off_function = "chiZero"
+> 
+
+rule(#Pu241)<
+ 	@signal = 1@#Pu241_CC
+	@background = 0@#Pu241_CC
+	@sys_on_function = "chiZero"
+	@sys_off_function = "chiZero"
+> 
+
+/**********************END*******************************/
+
+#NEXT#
+
+/*********************************************************************************
+*                                                  
+*       DANSS ANALYSIS – LOWER POSITION
+* 
+* @article{Alekseev:2018efk,
+*       author         = "Alekseev, I and others",
+*       title          = "{Search for sterile neutrinos at the DANSS experiment}",
+*       collaboration  = "DANSS",
+*       journal        = "Phys. Lett.",
+*       volume         = "B787",
+*       year           = "2018",
+*       pages          = "56-63",
+*       doi            = "10.1016/j.physletb.2018.10.038",
+*       eprint         = "1804.04046",
+*       archivePrefix  = "arXiv",
+*       primaryClass   = "hep-ex",
+*       SLACcitation   = "%%CITATION = ARXIV:1804.04046;%%"
+* }
+* 
+**********************************************************************************/
+
+ $version="3.2.17.0"
+ $oscillation_engine="DANSS_lower" 
+
+/* ####### Reactor flux ####### */
+
+nuflux(#PureU235)<
+	@flux_file="Fluxes/Pure_U235_SM.dat"
+	@time = 1.0		/* years */
+	@power = 1.0 	/* GW thermal */
+	@norm = 1.0
+>
+
+nuflux(#PureU238)<
+	@flux_file="Fluxes/Pure_U238_SM.dat"
+	@time = 1.0		/* years */
+	@power = 1.0 	/* GW thermal */
+	@norm = 1.0
+>
+
+nuflux(#PurePu239)<
+	@flux_file="Fluxes/Pure_Pu239_SM.dat"
+	@time = 1.0		/* years */
+	@power = 1.0 	/* GW thermal */
+	@norm = 1.0
+>
+
+nuflux(#PurePu241)<
+	@flux_file="Fluxes/Pure_Pu241_SM.dat"
+	@time = 1.0		/* years */
+	@power = 1.0 	/* GW thermal */
+	@norm = 1.0
+>
+
+/* ####### Detector settings ####### */
+
+$target_mass = 	        1.0  /* tons (fiducial mass) */
+
+/* ####### Energy window ####### */
+
+$bins = 		32
+$emin = 	        0.0018	/* GeV */
+$emax = 	        0.0098	/* GeV */
+
+$sampling_points = 401
+$sampling_min = 0.0
+$sampling_max = 0.01
+
+/* ######## Baseline setting ######## */
+
+$profiletype = 		3 
+$densitytab = 		{0}
+$lengthtab = 		{0.01269} /* km */
+
+/* ######## Technical information ######## */
+
+$filter_state = 1
+$filter_value = 0.0001 
+
+/* ####### Energy resolution ####### */
+
+energy(#ERES)<
+	@type = 1
+	@sigma_e = {0.0868, 0.006, 0.0}
+>
+
+/* ####### Cross sections ####### */
+
+cross(#Reactor_CC)<
+@cross_file = "Fluxes/IBDnew.dat"
+>
+
+
+/* ####### Channel definitions ####### */
+
+channel(#U235_CC)<
+	@channel = 	#PureU235:	-:	e:	e:	#Reactor_CC:    #ERES
+>
+
+channel(#U238_CC)<
+	@channel = 	#PureU238:	-:	e:	e:	#Reactor_CC:    #ERES
+>
+
+channel(#Pu239_CC)<
+	@channel = 	#PurePu239:	-:	e:	e:	#Reactor_CC:    #ERES
+>
+
+channel(#Pu241_CC)<
+	@channel = 	#PurePu241:	-:	e:	e:	#Reactor_CC:    #ERES
+>
+
+/* ####### Setting the rules ####### */
+
+rule(#U235)<
+ 	@signal = 1@#U235_CC
+	@background = 0@#U235_CC
+	@sys_on_function = "chiZero"
+	@sys_off_function = "chiZero"
+> 
+
+rule(#U238)<
+ 	@signal = 1@#U238_CC
+	@background = 0@#U238_CC
+	@sys_on_function = "chiZero"
+	@sys_off_function = "chiZero"
+> 
+
+rule(#Pu239)<
+ 	@signal = 1@#Pu239_CC
+	@background = 0@#Pu239_CC
+	@sys_on_function = "chiZero"
+	@sys_off_function = "chiZero"
+> 
+
+rule(#Pu241)<
+ 	@signal = 1@#Pu241_CC
+	@background = 0@#Pu241_CC
+	@sys_on_function = "chiZero"
+	@sys_off_function = "chiZero"
+> 
+
+/**********************END*******************************/
