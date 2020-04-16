@@ -33,7 +33,7 @@
 #include "glf_spectrum_aux_1.h"
 #include "glf_spectrum_aux_2.h"
 
-extern double systematic[10];
+extern double glf_systematic[10];
 
 /***************************************************************************
  *                        H E L P E R   F U N C T I O N S                  *
@@ -52,46 +52,6 @@ static inline double min(double x, double y)
 static inline double square(double x)
 {
   return x*x;
-}
-
-extern double theta_14;
-extern double delta_m; /* Delta m_{41}^2 */
-extern double delta_atm; /* Delta m_{31}^2 */
-extern double theta_13;
-extern double theta_12;
-extern double delta_solar; /* Delta m_{41}^2 */
-
-/***************************************************************************
- * Store oscillation parameters in internal data structures.               *
- * For more sophisticated probability engines, this would be the right     *
- * place to pre-compute the mixing matrix and parts of the Hamiltonian in  *
- * order to speed up the calls to the actual probability matrix function.  *
- ***************************************************************************/
-
-int spectra_get_oscillation_parameters(glb_params p, void *user_data)
-{
-  theta_13 = glbGetOscParams(p, MY_THETA_13);
-  theta_14 = glbGetOscParams(p, MY_THETA_14);
-  delta_m =  glbGetOscParams(p, MY_DELTA_M);
-  delta_atm =  glbGetOscParams(p, MY_DELTA_ATM);
-  theta_12 =  glbGetOscParams(p, MY_THETA_12);
-  delta_solar =  glbGetOscParams(p, MY_DELTA_SOLAR);
-  return 0;
-}
-
-/***************************************************************************
- * Write oscillation parameters from internal data structures into p.      *
- ***************************************************************************/
-
-int spectra_set_oscillation_parameters(glb_params p, void *user_data)
-{
-  glbSetOscParams(p,theta_13,MY_THETA_13); 
-  glbSetOscParams(p,theta_14,MY_THETA_14); 
-  glbSetOscParams(p,delta_m,MY_DELTA_M);
-  glbSetOscParams(p,delta_atm,MY_DELTA_ATM);
-  glbSetOscParams(p,theta_12,MY_THETA_12);
-  glbSetOscParams(p,delta_solar,MY_DELTA_SOLAR);
-  return 0;
 }
 
   /**************************
@@ -132,7 +92,7 @@ int spectra_set_oscillation_parameters(glb_params p, void *user_data)
 *                                                 *
 ***************************************************/
 
-double spectra_chi(int exp, int rule, int n_params, double *x, double *errors,
+double glf_spectra_chi(int exp, int rule, int n_params, double *x, double *errors,
                  void *user_data)
 { 
 
@@ -932,7 +892,7 @@ if (YesNo[5] == 1){
   /* Save the systematics parameters as starting values for the next step */
 
   for (i=0; i < Nnuisance; i++)
-    systematic[i] = x[i];
+    glf_systematic[i] = x[i];
 
   return chi2;
 }  

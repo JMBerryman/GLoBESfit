@@ -35,21 +35,12 @@
 #include "glf_precomputed_probabilities.h"
 #include "glf_probability.h"
 
-#define VERSION "1.0"
+
 #define MAXNUM 12 /* largest possible number of oscillation parameters */
-#define GT GITVERSION
+#define YES 1
+#define NO 0
 
-double theta_14;
-double delta_m; /* Delta m_{41}^2 */
-double delta_atm; /* Delta m_{31}^2 */
-double theta_13;
-double theta_12;
-double delta_solar;
-
-/* the infamous exponent to E_res^N */
-int N;
-
-double systematic[10];
+double glf_systematic[10];
 
 const char *argp_program_version =
 "GLoBESfit_spectra "VERSION"\n(C) 2007, 2019, 2020 J. M. Berryman, P. Huber \n"
@@ -263,7 +254,7 @@ int main(int argc, char *argv[])
 
   int NUMP=10;
 
-  double *osc=NULL;
+  double osc[MAXNUM];
   double xrange[]={-4,0};
   double yrange[]={-2,2};
   struct arguments arguments;
@@ -294,7 +285,7 @@ int main(int argc, char *argv[])
   /* parsing the command line */
   argp_parse (&argp, argc, argv, 0, 0, &arguments);  
   
-  N=1;
+  
 
   if(arguments.yrange!=NULL){
     rv=sscanf(arguments.yrange,"%lf , %lf",&yrange[0],&yrange[1]);
@@ -341,27 +332,15 @@ int main(int argc, char *argv[])
   *  DANSS  *
   ***********/
 
-  /*
-glbDefineOscEngine(NUMP, &DANSS_up_probability_matrix,
-			&spectra_get_oscillation_parameters,
-			&spectra_set_oscillation_parameters,
-			"DANSS_upper", NULL);
-
-glbDefineOscEngine(NUMP, &DANSS_down_probability_matrix,
-			&spectra_get_oscillation_parameters,
-			&spectra_set_oscillation_parameters,
-			"DANSS_lower", NULL);
-
-  */
 
 glbDefineOscEngine(NUMP, &glf_two_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 			"DANSS_upper", &DANSS_up_s);
 
 glbDefineOscEngine(NUMP, &glf_two_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DANSS_lower", (void *) &DANSS_down_s);
   
 
@@ -370,43 +349,43 @@ glbDefineOscEngine(NUMP, &glf_two_state_probability_matrix,
   **************/
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH1_AD1", (void *) &DB_EH1_AD1_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH1_AD2", (void *) &DB_EH1_AD2_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-		   	&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+		   	&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH2_AD3", (void *) &DB_EH2_AD3_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH2_AD8", (void *) &DB_EH2_AD8_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH3_AD4", (void *) &DB_EH3_AD4_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH3_AD5", (void *) &DB_EH3_AD5_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH3_AD6", (void *) &DB_EH3_AD6_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH3_AD7", (void *) &DB_EH3_AD7_s);
 
   /*********
@@ -414,8 +393,8 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   **********/
 
  glbDefineOscEngine(NUMP, &glf_two_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "NEOS_eng", (void *) &NEOS_s);
 
   /*****************
@@ -423,13 +402,13 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   ******************/
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DC_ND", (void *) &DC_ND_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DC_FD", (void *) &DC_FD_s);
 
   /**********
@@ -437,13 +416,13 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   ***********/
 
 glbDefineOscEngine(NUMP, &glf_two_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "bugey_near", (void *) &bugey_15_s);
 
 glbDefineOscEngine(NUMP, &glf_two_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "bugey_far", (void *) &bugey_40_s);
 
   /*********
@@ -451,13 +430,13 @@ glbDefineOscEngine(NUMP, &glf_two_state_probability_matrix,
   **********/
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "RENO_ND", (void *) &RENO_ND_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&spectra_get_oscillation_parameters,
-			&spectra_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "RENO_FD", (void *) &RENO_FD_s);
 
 #endif
@@ -514,7 +493,7 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   fprintf(stdout, "\n");
 */
 
-  glbDefineChiFunction(&spectra_chi, 4, "spectra-chisq", (void *)YesNo);
+  glbDefineChiFunction(&glf_spectra_chi, 4, "spectra-chisq", (void *)YesNo);
 
 /*************************************
 *                                    *
@@ -522,10 +501,8 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
 *                                    *
 **************************************/
 
-/* memory for osc */
-  osc = (double *) glb_malloc(sizeof(*osc) * glbGetNumOfOscParams());
-  for(i=0;i<glbGetNumOfOscParams();i++) osc[i]=0; /* FIXME glb_calloc
-						     is missing */
+
+  for(i=0;i<glbGetNumOfOscParams();i++) osc[i]=0; 
 
 /* Loading in experiment files... */
 
@@ -587,12 +564,12 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   glbSetDensityProjectionFlag(proj,GLB_FIXED,GLB_ALL);
   glbCopyParams(true_values,test_values);  
 
-  glbSetOscParams(test_values, asin(sqrt(0.084))/2.0, MY_THETA_13);
-  glbSetOscParams(test_values, 0.0, MY_THETA_14);
-  glbSetOscParams(test_values, 1.0, MY_DELTA_M);
-  glbSetOscParams(test_values, 2.525e-3, MY_DELTA_ATM);
-  glbSetOscParams(test_values, 0.590, MY_THETA_12);
-  glbSetOscParams(test_values, 7.39e-5, MY_DELTA_SOLAR);
+  glbSetOscParams(test_values, asin(sqrt(0.084))/2.0, GLF_THETA_13);
+  glbSetOscParams(test_values, 0.0, GLF_THETA_14);
+  glbSetOscParams(test_values, 1.0, GLF_DELTA_M);
+  glbSetOscParams(test_values, 2.525e-3, GLF_DELTA_ATM);
+  glbSetOscParams(test_values, 0.590, GLF_THETA_12);
+  glbSetOscParams(test_values, 7.39e-5, GLF_DELTA_SOLAR);
   
   glbCopyParams(test_values,starting_values);
  
@@ -701,7 +678,7 @@ double *EndNuisances;
 
      for (s22t13 = s22t13min; s22t13<s22t13max+ s22t13step; s22t13 += s22t13step){
       th13=asin(sqrt(s22t13))/2.0;
-      glbSetOscParams(test_values, th13, MY_THETA_13);
+      glbSetOscParams(test_values, th13, GLF_THETA_13);
 
       for(x=xrange[0];x<=xrange[1]+(xrange[1]-xrange[0])/resolution/2;
 	  x=x+(xrange[1]-xrange[0])/resolution)
@@ -716,8 +693,8 @@ double *EndNuisances;
 	    glbSetOscParams(test_values,thetheta,0);
 	    glbSetOscParams(test_values,pow(10,y),1);
 #else 
-	    glbSetOscParams(test_values,thetheta,MY_THETA_14);
-	    glbSetOscParams(test_values,pow(10,y),MY_DELTA_M);
+	    glbSetOscParams(test_values,thetheta,GLF_THETA_14);
+	    glbSetOscParams(test_values,pow(10,y),GLF_DELTA_M);
 #endif
 
 	    /* Compute Chi^2 for all loaded experiments and all rules */
@@ -746,10 +723,10 @@ double *EndNuisances;
 
     for (s22t13 = s22t13min; s22t13 <= s22t13max; s22t13 += s22t13step){
       th13=asin(sqrt(s22t13))/2.0;
-      glbSetOscParams(test_values, th13, MY_THETA_13);
+      glbSetOscParams(test_values, th13, GLF_THETA_13);
 	
       for (Dm31 = Dm31min; Dm31 <= Dm31max; Dm31 += Dm31step){
-        glbSetOscParams(test_values, Dm31*(1.0e-3), MY_DELTA_ATM);
+        glbSetOscParams(test_values, Dm31*(1.0e-3), GLF_DELTA_ATM);
 	    
         /* Compute Chi^2 for all loaded experiments and all rules */
         res=glbChiSys(test_values,GLB_ALL,GLB_ALL);
@@ -781,8 +758,8 @@ double *EndNuisances;
 	    glbSetOscParams(test_values,pow(10,y),1);
 #else 
 
-	    glbSetOscParams(test_values,thetheta,MY_THETA_14);
-	    glbSetOscParams(test_values,pow(10,y),MY_DELTA_M);
+	    glbSetOscParams(test_values,thetheta,GLF_THETA_14);
+	    glbSetOscParams(test_values,pow(10,y),GLF_DELTA_M);
 #endif
 
 	    /* Compute Chi^2 for all loaded experiments and all rules */

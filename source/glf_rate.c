@@ -35,21 +35,12 @@
 #include "glf_probability.h"
 #include "glf_precomputed_probabilities.h"
 
-#define VERSION "1.0"
+
+#define YES 1
+#define NO -1
 #define MAXNUM 12 /* largest possible number of oscillation parameters */
-#define GT GITVERSION
 
-double theta_14;
-double delta_m; /* Delta m_{41}^2 */
-double delta_atm; /* Delta m_{31}^2 */
-double theta_13;
-double theta_12;
-double delta_solar;
-
-/* the infamous exponent to E_res^N */
-int N;
-
-double systematic[10];
+double glf_systematic[10]; /* to allow easy acces to nuisance parameters for debugging */
 
 const char *argp_program_version =
 "GLoBESfit_rate "VERSION"\n(C) 2007, 2019, 2020 J. M. Berryman, P. Huber \n"
@@ -271,7 +262,7 @@ int main(int argc, char *argv[])
 
   int NUMP=6;
 
-  double *osc=NULL;
+  double osc[MAXNUM];
   double xrange[]={-4,0};
   double yrange[]={-2,2};
   struct arguments arguments;
@@ -304,7 +295,7 @@ int main(int argc, char *argv[])
   /* parsing the command line */
   argp_parse (&argp, argc, argv, 0, 0, &arguments);  
   
-  N=1;
+ 
 
   if(arguments.yrange!=NULL){
     rv=sscanf(arguments.yrange,"%lf , %lf",&yrange[0],&yrange[1]);
@@ -345,16 +336,16 @@ int main(int argc, char *argv[])
 /*************************************************
 *                                                *
 *        DEFINING THE OSCILLATION ENGINES        *
-*                                                *
+*                                                 *
 **************************************************/
 
 /* Oscillation engine for Bugey/Rovno91...remade for "rate" calculation */
 	    
 double bugey_wide[1] = {0.0015};
 		    
-glbDefineOscEngine(NUMP, &combo_probability_matrix,
-		    &combo_get_oscillation_parameters,
-		    &combo_set_oscillation_parameters,
+glbDefineOscEngine(NUMP, &glf_probability_matrix,
+		    &glf_get_oscillation_parameters,
+		    &glf_set_oscillation_parameters,
 		    "bugey_rate"
 		    ,(void *) &bugey_wide);
 
@@ -362,9 +353,9 @@ glbDefineOscEngine(NUMP, &combo_probability_matrix,
 	    
 double gosgen_wide[1] = {0.001};
 		    
-glbDefineOscEngine(NUMP, &combo_probability_matrix,
-		    &combo_get_oscillation_parameters,
-		    &combo_set_oscillation_parameters,
+glbDefineOscEngine(NUMP, &glf_probability_matrix,
+		    &glf_get_oscillation_parameters,
+		    &glf_set_oscillation_parameters,
 		    "gosgen_rate"
 		    ,(void *) & gosgen_wide);
 
@@ -372,9 +363,9 @@ glbDefineOscEngine(NUMP, &combo_probability_matrix,
 
 double krasnoyarsk_wide[1] = {0.001};
 		    
-glbDefineOscEngine(NUMP, &combo_probability_matrix,
-		    &combo_get_oscillation_parameters,
-		    &combo_set_oscillation_parameters,
+glbDefineOscEngine(NUMP, &glf_probability_matrix,
+		    &glf_get_oscillation_parameters,
+		    &glf_set_oscillation_parameters,
 		    "krasnoyarsk_rate"
 		    ,(void *) &krasnoyarsk_wide);
 
@@ -382,9 +373,9 @@ glbDefineOscEngine(NUMP, &combo_probability_matrix,
 
 double SRP_wide[1] = {0.001};
 		    
-glbDefineOscEngine(NUMP, &combo_probability_matrix,
-		    &combo_get_oscillation_parameters,
-		    &combo_set_oscillation_parameters,
+glbDefineOscEngine(NUMP, &glf_probability_matrix,
+		    &glf_get_oscillation_parameters,
+		    &glf_set_oscillation_parameters,
 		    "SRP_rate"
 		    ,(void *) &SRP_wide);
 
@@ -392,9 +383,9 @@ glbDefineOscEngine(NUMP, &combo_probability_matrix,
 
 double Rovno88_wide[1] = {0.0005};
 		    
-glbDefineOscEngine(NUMP, &combo_probability_matrix,
-		    &combo_get_oscillation_parameters,
-		    &combo_set_oscillation_parameters,
+glbDefineOscEngine(NUMP, &glf_probability_matrix,
+		    &glf_get_oscillation_parameters,
+		    &glf_set_oscillation_parameters,
 		    "rovno88_rate"
 		    ,(void *) &Rovno88_wide);
 
@@ -402,9 +393,9 @@ glbDefineOscEngine(NUMP, &combo_probability_matrix,
 
 double Nucifer_wide[1] = {0.0015};
 		    
-glbDefineOscEngine(NUMP, &combo_probability_matrix,
-		    &combo_get_oscillation_parameters,
-		    &combo_set_oscillation_parameters,
+glbDefineOscEngine(NUMP, &glf_probability_matrix,
+		    &glf_get_oscillation_parameters,
+		    &glf_set_oscillation_parameters,
 		    "nucifer_rate"
 		    ,(void *) &Nucifer_wide);
 
@@ -417,9 +408,9 @@ glbDefineOscEngine(NUMP, &combo_probability_matrix,
 
 double FakeWide[1] = {0.002};
 		    
-glbDefineOscEngine(NUMP, &standard_probability_matrix,
-		    &combo_get_oscillation_parameters,
-		    &combo_set_oscillation_parameters,
+glbDefineOscEngine(NUMP, &glf_standard_probability_matrix,
+		    &glf_get_oscillation_parameters,
+		    &glf_set_oscillation_parameters,
 		    "standard"
 		    ,(void *) &FakeWide);
 
@@ -428,24 +419,24 @@ glbDefineOscEngine(NUMP, &standard_probability_matrix,
   **************/
  
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH1_AD1", (void *) &DB_EH1_AD1_s);
  
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH1_AD2", (void *) &DB_EH1_AD2_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH2_AD3", (void *) &DB_EH2_AD3_s);
 
 glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
-			&combo_get_oscillation_parameters,
-			&combo_set_oscillation_parameters,
+			&glf_get_oscillation_parameters,
+			&glf_set_oscillation_parameters,
 		   "DayaBay_EH2_AD8", (void *) &DB_EH2_AD8_s);
 
 
@@ -556,12 +547,12 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   fprintf(stdout, "\n");
 */
 
-  glbDefineChiFunction(&combo_rate_chi, 4, "rate-combo", (void *)YesNo);
-  glbDefineChiFunction(&combo_rate_chi_unfix, 2, "rate-combo-unfix", (void *)Ratios);
-  glbDefineChiFunction(&combo_rate_chi_nosys, 0, "rate-combo-no-sys", (void *)YesNo);
+  glbDefineChiFunction(&glf_rate_chi, 4, "rate-combo", (void *)YesNo);
+  glbDefineChiFunction(&glf_rate_chi_unfix, 2, "rate-combo-unfix", (void *)Ratios);
+  glbDefineChiFunction(&glf_rate_chi_nosys, 0, "rate-combo-no-sys", (void *)YesNo);
 
-  glbDefineChiFunction(&combo_rate_chi_SM, 4, "rate-combo-SM", (void *)YesNo);
-  glbDefineChiFunction(&combo_rate_chi_HKSS, 4, "rate-combo-HKSS", (void *)YesNo);
+  glbDefineChiFunction(&glf_rate_chi_SM, 4, "rate-combo-SM", (void *)YesNo);
+  glbDefineChiFunction(&glf_rate_chi_HKSS, 4, "rate-combo-HKSS", (void *)YesNo);
 
 /*************************************
 *                                    *
@@ -569,10 +560,8 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
 *                                    *
 **************************************/
 
- /* memory for osc */
-  osc = (double *) glb_malloc(sizeof(*osc) * glbGetNumOfOscParams());
-  for(i=0;i<glbGetNumOfOscParams();i++) osc[i]=0; /* FIXME glb_calloc
-						     is missing */
+
+  for(i=0;i<glbGetNumOfOscParams();i++) osc[i]=0; 
 
 /*
   IMPORTANT REMARK: There are five distinct analyses that can be performed using
@@ -681,12 +670,12 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   glbSetDensityProjectionFlag(proj,GLB_FIXED,GLB_ALL);
   glbCopyParams(true_values,test_values);  
 
-  glbSetOscParams(test_values, asin(sqrt(0.084))/2.0, MY_THETA_13);
-  glbSetOscParams(test_values, 0.0, MY_THETA_14);
-  glbSetOscParams(test_values, 1.0, MY_DELTA_M);
-  glbSetOscParams(test_values, 2.525e-3, MY_DELTA_ATM);
-  glbSetOscParams(test_values, 0.590, MY_THETA_12);
-  glbSetOscParams(test_values, 7.39e-5, MY_DELTA_SOLAR);
+  glbSetOscParams(test_values, asin(sqrt(0.084))/2.0, GLF_THETA_13);
+  glbSetOscParams(test_values, 0.0, GLF_THETA_14);
+  glbSetOscParams(test_values, 1.0, GLF_DELTA_M);
+  glbSetOscParams(test_values, 2.525e-3, GLF_DELTA_ATM);
+  glbSetOscParams(test_values, 0.590, GLF_THETA_12);
+  glbSetOscParams(test_values, 7.39e-5, GLF_DELTA_SOLAR);
 
   glbCopyParams(test_values,starting_values);
 
@@ -729,8 +718,8 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   else if (arguments.Unfix==YES){
     for(x=0.6; x<=1.6; x=x+0.01){
       for(y=0.6; y<=1.4; y=y+0.01){
-	glbSetOscParams(test_values,0.0,MY_THETA_14);
-	glbSetOscParams(test_values,0.0,MY_DELTA_M);
+	glbSetOscParams(test_values,0.0,GLF_THETA_14);
+	glbSetOscParams(test_values,0.0,GLF_DELTA_M);
 
         Ratios[0]=x;
         Ratios[1]=y;
@@ -757,18 +746,19 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
 	    glbSetOscParams(test_values,pow(10,y),1);
 #else 
 
-	    glbSetOscParams(test_values,thetheta,MY_THETA_14);
-	    glbSetOscParams(test_values,pow(10,y),MY_DELTA_M);
+	    glbSetOscParams(test_values,thetheta,GLF_THETA_14);
+	    glbSetOscParams(test_values,pow(10,y),GLF_DELTA_M);
 #endif
 	    count++;
 	   
 	    progress=count/pow(resolution+1,2)*100;
 	    /* Compute Chi^2 for all loaded experiments and all rules */
 	    res=glbChiSys(test_values,GLB_ALL,GLB_ALL);
-            if (arguments.write == YES){ fprintf(output,"%f %f %f %f %f %f %f \n",
-			x,y,res, systematic[0], systematic[1], 
-			systematic[2], systematic[3]);}
-            else{fprintf(output,"%f %f %f\n",x,y,res); }
+	    if (arguments.write == YES){ fprintf(output,"%f %f %f %f %f %f %f \n",
+			x,y,res, glf_systematic[0], glf_systematic[1], 
+			glf_systematic[2], glf_systematic[3]);}
+			else{
+			  fprintf(output,"%f %f %f\n",x,y,res); }
 	  }
     }
 

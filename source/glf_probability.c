@@ -58,12 +58,13 @@ static inline double square(double x)
 *  INPUT FOR PROBABILITY ENGINES  *
 ***********************************/
 
-extern double theta_14;
-extern double delta_m; /* Delta m_{41}^2 */
-extern double delta_atm; /* Delta m_{31}^2 */
-extern double theta_13;
-extern double theta_12;
-extern double delta_solar; /* Delta m_{41}^2 */
+static double theta_14;
+static double delta_m; /* Delta m_{41}^2 */
+static double delta_atm; /* Delta m_{31}^2 */
+static double theta_13;
+static double theta_12;
+static double delta_solar; /* Delta m_{41}^2 */
+
 
 /**************************************************************************
 *   This function is the result of                                        *
@@ -86,14 +87,14 @@ static inline double lsin(double q, double La, double Lb)
  * order to speed up the calls to the actual probability matrix function.  *
  ***************************************************************************/
 
-int combo_get_oscillation_parameters(glb_params p, void *user_data)
+int glf_get_oscillation_parameters(glb_params p, void *user_data)
 {
-  theta_13 = glbGetOscParams(p, MY_THETA_13);
-  theta_14 = glbGetOscParams(p, MY_THETA_14);
-  delta_m =  glbGetOscParams(p, MY_DELTA_M);
-  delta_atm =  glbGetOscParams(p, MY_DELTA_ATM);
-  theta_12 =  glbGetOscParams(p, MY_THETA_12);
-  delta_solar =  glbGetOscParams(p, MY_DELTA_SOLAR);
+  theta_13 = glbGetOscParams(p, GLF_THETA_13);
+  theta_14 = glbGetOscParams(p, GLF_THETA_14);
+  delta_m =  glbGetOscParams(p, GLF_DELTA_M);
+  delta_atm =  glbGetOscParams(p, GLF_DELTA_ATM);
+  theta_12 =  glbGetOscParams(p, GLF_THETA_12);
+  delta_solar =  glbGetOscParams(p, GLF_DELTA_SOLAR);
   return 0;
 }
 
@@ -101,14 +102,14 @@ int combo_get_oscillation_parameters(glb_params p, void *user_data)
  * Write oscillation parameters from internal data structures into p.      *
  ***************************************************************************/
 
-int combo_set_oscillation_parameters(glb_params p, void *user_data)
+int glf_set_oscillation_parameters(glb_params p, void *user_data)
 {
-  glbSetOscParams(p,theta_13,MY_THETA_13); 
-  glbSetOscParams(p,theta_14,MY_THETA_14); 
-  glbSetOscParams(p,delta_m,MY_DELTA_M);
-  glbSetOscParams(p,delta_atm,MY_DELTA_ATM);
-  glbSetOscParams(p,theta_12,MY_THETA_12);
-  glbSetOscParams(p,delta_solar,MY_DELTA_SOLAR);
+  glbSetOscParams(p,theta_13,GLF_THETA_13); 
+  glbSetOscParams(p,theta_14,GLF_THETA_14); 
+  glbSetOscParams(p,delta_m,GLF_DELTA_M);
+  glbSetOscParams(p,delta_atm,GLF_DELTA_ATM);
+  glbSetOscParams(p,theta_12,GLF_THETA_12);
+  glbSetOscParams(p,delta_solar,GLF_DELTA_SOLAR);
   return 0;
 }
 
@@ -120,7 +121,7 @@ int combo_set_oscillation_parameters(glb_params p, void *user_data)
   *  TWO-FLAVOR PROBABILITIES *
   *****************************/
 
-int combo_probability_matrix(double P[3][3], int cp_sign, double E, int psteps,
+int glf_probability_matrix(double P[3][3], int cp_sign, double E, int psteps,
                           const double *length, const double *density,
                           double filter_sigma, void *user_data)
 {
@@ -150,7 +151,7 @@ int combo_probability_matrix(double P[3][3], int cp_sign, double E, int psteps,
   *  STANDARD PROBABILITIES *
   ***************************/
 
-int standard_probability_matrix(double P[3][3], int cp_sign, double E, int psteps,
+int glf_standard_probability_matrix(double P[3][3], int cp_sign, double E, int psteps,
                           const double *length, const double *density,
                           double filter_sigma, void *user_data)
 {

@@ -23,35 +23,32 @@
 #ifndef GLF_PROBABILITY_H
 #define GLF_PROBABILITY_H
 
-#define YES 1
-#define NO -1
 
-#define FAILURE -1
-#define SUCCESS 0
 
-#define MY_THETA_13 0
-#define MY_THETA_14 1
-#define MY_DELTA_M 2
-#define MY_DELTA_ATM 3
-#define MY_THETA_12 4
-#define MY_DELTA_SOLAR 5
+
+#define GLF_THETA_13 0
+#define GLF_THETA_14 1
+#define GLF_DELTA_M 2
+#define GLF_DELTA_ATM 3
+#define GLF_THETA_12 4
+#define GLF_DELTA_SOLAR 5
 
 /**************************************************************************/
 
 /* Setting and getting parameters */
 
-int combo_set_oscillation_parameters(glb_params p, void *user_data);
-int combo_get_oscillation_parameters(glb_params p, void *user_data);
+int glf_set_oscillation_parameters(glb_params p, void *user_data);
+int glf_get_oscillation_parameters(glb_params p, void *user_data);
 
 /**************************************************************************/
 
 /* Generic probability matrices */
 
-int combo_probability_matrix(double P[3][3], int cp_sign, double E, int psteps,
+int glf_probability_matrix(double P[3][3], int cp_sign, double E, int psteps,
                           const double *length, const double *density,
 				 double filter_sigma, void *user_data);
 
-int standard_probability_matrix(double P[3][3], int cp_sign, double E, int psteps,
+int glf_standard_probability_matrix(double P[3][3], int cp_sign, double E, int psteps,
                           const double *length, const double *density,
 				 double filter_sigma, void *user_data);
 

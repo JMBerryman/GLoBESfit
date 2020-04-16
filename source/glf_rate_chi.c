@@ -33,7 +33,7 @@
 #include "glf_rate_chi.h"
 #include "glf_rate_aux.h"
 
-extern double systematic[10];
+extern double glf_systematic[10];
 
 /***************************************************************************
  *                        H E L P E R   F U N C T I O N S                  *
@@ -93,7 +93,7 @@ static inline double square(double x)
 *                                                                *
 ******************************************************************/
 
-double combo_rate_chi(int exp, int rule, int n_params, double *x, double *errors,
+double glf_rate_chi(int exp, int rule, int n_params, double *x, double *errors,
                  void *user_data)
 { 
 
@@ -896,7 +896,7 @@ if(YesNo[23]==1){
   }
 
   for (i = 0; i<4; i++){ /* Export nuisance parameters to main file */
-    systematic[i] = x[i];
+    glf_systematic[i] = x[i];
   }
 
   return chi2;
@@ -908,7 +908,7 @@ if(YesNo[23]==1){
 *                                                                   *
 *********************************************************************/
 
-double combo_rate_chi_nosys(int exp, int rule, int n_params, double *x, double *errors,
+double glf_rate_chi_nosys(int exp, int rule, int n_params, double *x, double *errors,
                  void *user_data)
 { 
 
@@ -1710,7 +1710,7 @@ if(YesNo[23]==1){
 *                                                                   *
 *********************************************************************/
 
-double combo_rate_chi_SM(int exp, int rule, int n_params, double *x, double *errors,
+double glf_rate_chi_SM(int exp, int rule, int n_params, double *x, double *errors,
                  void *user_data)
 { 
 
@@ -2511,7 +2511,7 @@ if(YesNo[23]==1){
   }
 
   for (i = 0; i<4; i++){ /* Export nuisance parameters to main file */
-    systematic[i] = x[i];
+    glf_systematic[i] = x[i];
   }
 
   return chi2;
@@ -2524,7 +2524,7 @@ if(YesNo[23]==1){
 *                                                                   *
 *********************************************************************/
 
-double combo_rate_chi_HKSS(int exp, int rule, int n_params, double *x, double *errors,
+double glf_rate_chi_HKSS(int exp, int rule, int n_params, double *x, double *errors,
                  void *user_data)
 { 
 
@@ -3325,7 +3325,7 @@ if(YesNo[23]==1){
   }
 
   for (i = 0; i<4; i++){ /* Export nuisance parameters to main file */
-    systematic[i] = x[i];
+    glf_systematic[i] = x[i];
   }
   return chi2;
 }
@@ -3336,7 +3336,7 @@ if(YesNo[23]==1){
 *                                                                        *
 **************************************************************************/
 
-double combo_rate_chi_unfix(int exp, int rule, int n_params, double *x, double *errors,
+double glf_rate_chi_unfix(int exp, int rule, int n_params, double *x, double *errors,
                  void *user_data)
 { 
 
