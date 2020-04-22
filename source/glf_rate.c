@@ -35,7 +35,7 @@
 #include "glf_probability.h"
 #include "glf_precomputed_probabilities.h"
 
-
+#define VERSION "1.0"
 #define YES 1
 #define NO -1
 #define MAXNUM 12 /* largest possible number of oscillation parameters */
@@ -559,7 +559,6 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
 *        THE MEAT OF THE CODE        *
 *                                    *
 **************************************/
-
 
   for(i=0;i<glbGetNumOfOscParams();i++) osc[i]=0; 
 

@@ -35,7 +35,7 @@
 #include "glf_precomputed_probabilities.h"
 #include "glf_probability.h"
 
-
+#define VERSION "1.0"
 #define MAXNUM 12 /* largest possible number of oscillation parameters */
 #define YES 1
 #define NO 0

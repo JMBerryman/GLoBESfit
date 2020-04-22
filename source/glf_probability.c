@@ -268,15 +268,15 @@ double P[3][3], int cp_sign, double E, int psteps,
 
   for (j=0; j<3; j++){
     for (k=j+1; k<4; k++){
-      logq = -1.0*log10(fabs(lambda[k]-lambda[j]));
+      logq = log10(fabs(lambda[k]-lambda[j]));
   
       if (logq <= data[0][0]){
- 	/* For logq too small, oscillations average out */
-        factor = 0.5;
+	/* For logq too small, quadratic oscillations */
+        factor = data[0][1]*pow(10.0, 2.0*(logq-data[0][0]));
       }
       else if (logq >= data[dlength-1][0]){
-	/* For logq too large, quadratic oscillations */
-        factor = data[dlength-1][1]*pow(10.0, -2.0*(logq-data[dlength-1][0]));
+ 	/* For logq too large, oscillations average out */
+        factor = 0.5;
       }
       else{
         pos = floor( (logq-data[0][0])/step );
