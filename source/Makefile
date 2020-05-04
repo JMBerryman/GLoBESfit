@@ -27,7 +27,8 @@
 
 # Absolutely requires globes 3.2.17.0 or higher
 
-prefix = /usr/local
+version = 1.0
+prefix = /usr/local/
 exec_prefix = ${prefix}
 libdir = ${exec_prefix}/lib
 globesconf= $(exec_prefix)/bin/globes-config
@@ -38,20 +39,21 @@ local_LDFLAGS:=$(shell $(globesconf) --libs)
 local_LTLDFLAGS:=$(shell $(globesconf) --ltlibs)
 lapack = -llapack -lblas -lf2c
 
+
 BIN = glf_rate glf_spectrum
-OBJ = source/glf_rate.o source/glf_spectrum.o source/glf_rate_chi.o source/glf_spectrum_chi.o source/glf_probability.o  
+OBJ = glf_rate.o glf_spectrum.o glf_rate_chi.o glf_spectrum_chi.o glf_probability.o  
 
 all: $(BIN)
 
-glf_rate: source/glf_rate_chi.o source/glf_rate.o source/glf_probability.o
+glf_rate: glf_rate_chi.o glf_rate.o glf_probability.o
 	g++ glf_rate_chi.o glf_rate.o glf_probability.o -o\
 	 glf_rate $(LDFLAGS)  $(local_LDFLAGS)
-glf_spectrum: source/glf_spectrum.o source/glf_spectrum_chi.o source/glf_probability.o
+glf_spectrum: glf_spectrum.o glf_spectrum_chi.o glf_probability.o
 	g++ glf_spectrum.o glf_spectrum_chi.o  glf_probability.o -o\
 	 glf_spectrum $(LDFLAGS)  $(local_LDFLAGS)
 
 %.o : %.c
-	gcc $(CFLAGS) $(local_CFLAGS)  -c $< $(INCFLAGS) -DGITVERSION=\"$(gitversion)\"
+	gcc $(CFLAGS) $(local_CFLAGS)  -c $< $(INCFLAGS) -DVERSION=\"$(version)\"
 .PHONY: clean
 clean:
 	rm -f $(BIN) $(OBJ)

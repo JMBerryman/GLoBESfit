@@ -1,76 +1,84 @@
-**GLoBESfit**
-=============
-***A `GLoBES`-based fit to the global reactor antineutrino dataset***
+GLoBESfit - GLOBES fitting tools
+===================================================
 
-Overview
-========
-`GLoBESfit` is a software suite used to analyze the global reactor antineutrino dataset. As the name suggests, `GLoBESfit` is based on the publicly available `GLoBES` framework – this is all the user needs to run `GLoBESfit`!
+This is GLoBESfit, a collection of numerical routines based on GLoBES
+to allow neutrino oscillation fits to global neutrino data.
 
-By default, `GLoBESfit` is designed to examine the evidence for the existence of one additional, sterile neutrino species. However, the user is free to modify the expressions for the oscillation probabilities to probe any new-physics scenario that they wish to investigate.
+GLoBESfit is free software, you can redistribute it and/or modify it
+under the terms of the GNU General Public License.
 
-`GLoBESfit` consists of two separate executables:
-  1. `glf_rate` executes an analysis of measurements of the inverse beta decay (IBD) *rate measurements* performed at the following experiments: Bugey-3, Bugey-4, Chooz, Daya Bay, Double Chooz, Gösgen, ILL, Krasnoyarsk (1987, 1994, 1999), Nucifer, Palo Verde, RENO, Rovno (1988, 1991) and Savannah River.
-  2. `glf_spectrum` executes an analysis of measurements of IBD *spectral measurements* performed at the following experiments: Bugey-3, DANSS, Daya Bay, Double Chooz, NEOS and RENO.
+The GNU General Public License does not permit this software to be
+redistributed in proprietary programs.
 
-See the documentation for more details on the experiments we've included and how `GLoBESfit` performs these analyses.
+This library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Documentation
-=============
+Limitations
+===========
 
-`GLoBESfit` will be extensively documented in an upcoming publication - check back soon for an arXiv number!
+GLoBESfit is *not* thread safe.
+GLoBESfit is *not* designed to be used in *security critical* applications 
+and environments, e.g. no care has been taken to avoid vulnerability
+to heap corruption exploits etc.
+
+Credit
+======
+
+GLoBESfit is mainly developed for academic use. Thus the authors would
+appreciate being given academic credit for it. Whenever you use
+GLoBESfit to produce a publication or a talk indicate that you have
+used GLoBESfit and please cite the following references:
+
+J.M. Berryman and P. Huber
+TBA
+arXiv: TBA
+
+Besides, many of the data which is used by GLoBESfit and distributed together
+with it should be correctly referenced where possible. For details see the
+documentation.
 
 Installation
 ============
 
-`GLoBESfit` can be downloaded from source:
-```bash
-git clone https://github.com/JMBerryman/GLoBESfit.git
-cd GLoBESfit
-```
+GLoBESfit follows the standard GLoBES installation procedure. That is,
+it is assumed that GLoBES has been successfully installed on your
+system and thus all dependenices of GLoBESfit should be satisfied. Go
+into 'source/' and in 'Makefile' make sure that 'prefix' points to a
+location where 'globes-config' can be found. Then use 'make'.
 
-A `Makefile` has been included as a part of `GLoBESfit`. The only potential user-required input here is the location of the `GLoBES` directory. By default, the relevant line of the `Makefile` reads:
-```bash
-prefix = /usr/local
-```
-If the user has their `GLoBES` directories installed elsewhere, then they will need to modify this line. Once the user has changed this line as needed, they need simply run
-```bash
-make
-```
-At this point, the user can execute the rate analysis with
-```bash
-./glf_rate
-```
-and the spectral-ratio analysis can be executed with
-```bash
-./glf_spectrum
-```
-It's as easy as that! (The user should review the documentation for explanations on how to use or ignore different experiments within a given analysis, how to use different reactor antineutrino fluxes, etc. This isn't available quite yet, but we're getting there!)
+More information about GLoBES
+=============================
 
-Data Release
-============
+The project homepage is http://www.globesfit.org
 
-In addition to releasing our software, we have also provided the results of our calculations that we used to generate the result presented in (NEED ARXIV NUMBER). See the folders `RateResults` and `SpectraResults` for more details about which files we have provided.
+See the NEWS file for recent changes to the library.
 
-Referencing `GLoBESfit`
-=======================
+Reporting Bugs
+==============
 
-We hope you find `GLoBESfit` useful! If you do use any of these tools as a part of your own research, then we ask that you reference the following papers:
+A list of known bugs can be found in the BUGS file.  
+Details of compilation problems can be found in the INSTALL file.
 
-```bash
-@article{Berryman:2019hme,
-      author         = "Berryman, Jeffrey M. and Huber, Patrick",
-      title          = "{Reevaluating Reactor Antineutrino Anomalies with Updated Flux Predictions}",
-      journal        = "Phys. Rev.",
-      volume         = "D101",
-      year           = "2020",
-      number         = "1",
-      pages          = "015008",
-      doi            = "10.1103/PhysRevD.101.015008",
-      eprint         = "1909.09267",
-      archivePrefix  = "arXiv",
-      primaryClass   = "hep-ph",
-      SLACcitation   = "%%CITATION = ARXIV:1909.09267;%%"
-}
-```
+If you find a bug which is not listed in these files please report it
+to <globesfit-g@vt.edu>.
 
-(More references will be added soon!)
+All bug reports should include:
+
+       The version number of GLoBESfit, and where you obtained it.
+       The version number of GLoBES.	   
+       The hardware and operating system
+       The compiler used, including version number and compilation options
+       A description of the bug behaviour
+       A short program which reproducibly exercises the bug
+
+It is also useful if you can report whether the same problem occurs
+when the library is compiled without optimization.
+
+Thank you.
+
+Contributing to GLoBESfit
+=========================
+
+If you are interested in participating in GLoBESfit development, please contact
+us at <globesfit-g@vt.edu>

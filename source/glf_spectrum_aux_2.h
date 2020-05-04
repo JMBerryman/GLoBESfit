@@ -49,19 +49,6 @@ static const double DANSSratio[24] = {0.7175, 0.7193, 0.7272, 0.7130, 0.7114, 0.
 
 static const double DANSSF[4] = {0.56, 0.07, 0.31, 0.06};
 
-/*
-  To estimate the effect of updated DANSS data on these results, we include a pre-
-  publication version of their results (see Danilov @ EPS-HEP 2019)
-*/
-
-static const double DANSSratio2[48] = {0.707, 0.722, 0.708, 0.705, 0.707, 0.718, 0.704, 
-		0.712, 0.695, 0.706, 0.697, 0.689, 0.7, 0.695, 0.702, 0.708, 0.691, 0.701, 
-		0.701, 0.711, 0.703, 0.699, 0.694, 0.701, 0.685, 0.678, 0.704, 0.685, 
-		0.692, 0.686, 0.709, 0.718, 0.704, 0.697, 0.687, 0.717, 0.728, 0.726, 
-		0.694, 0.669, 0.704, 0.712, 0.75, 0.712, 0.746, 0.681, 0.668, 0.615};
-
-static const double DANSSF2[4] = {0.542, 0.072, 0.328, 0.058};
-
   /*************
   *  DAYA BAY  *
   **************/
