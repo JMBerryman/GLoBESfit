@@ -30,9 +30,9 @@ appreciate being given academic credit for it. Whenever you use
 GLoBESfit to produce a publication or a talk indicate that you have
 used GLoBESfit and please cite the following references:
 
-J.M. Berryman and P. Huber
-TBA
-arXiv: TBA
+J.M. Berryman and P. Huber, Sterile Neutrinos and the Global Reactor
+Antineutrino Dataset
+arXiv: 2005.01756
 
 Besides, many of the data which is used by GLoBESfit and distributed together
 with it should be correctly referenced where possible. For details see the
@@ -43,7 +43,7 @@ Installation
 
 GLoBESfit follows the standard GLoBES installation procedure. That is,
 it is assumed that GLoBES has been successfully installed on your
-system and thus all dependenices of GLoBESfit should be satisfied. Go
+system and thus all dependencies of GLoBESfit should be satisfied. Go
 into 'source/' and in 'Makefile' make sure that 'prefix' points to a
 location where 'globes-config' can be found. Then use 'make'.
 
@@ -69,7 +69,7 @@ All bug reports should include:
        The version number of GLoBES.	   
        The hardware and operating system
        The compiler used, including version number and compilation options
-       A description of the bug behaviour
+       A description of the bug behavior
        A short program which reproducibly exercises the bug
 
 It is also useful if you can report whether the same problem occurs
