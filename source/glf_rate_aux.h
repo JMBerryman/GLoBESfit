@@ -127,7 +127,7 @@ static const double DBdata[8] = {0.9599, 0.9579, 0.9566, 0.9555, 0.9572, 0.9539,
 		0.9528, 0.9558};
 
 /*
-  The ratio of the DB data with respect to the new flux calculation
+  The ratio of the DB data with respect to the new flux calculations
 */
 
 static const double DBdataSM[8] = {0.9970, 0.9960, 0.9955, 0.9952, 0.9978, 0.9953,
@@ -142,7 +142,7 @@ static const double DBdataHKSS[8] = {0.9522, 0.9503, 0.9490, 0.9479, 0.9495, 0.9
   correlations. The ordering follows the ordering of the flux fractions laid out above.
 */
 
-static const double cov_matrix_DB[8][8]={{209834., -46543.7, -42974., -62448.2, -16613.7, -17214.6, -30518.2, 6929.51}, {-46543.7, 223976., -72201.8, 10043.2, -28424.1, -29452.3, -56218., -603.994}, {-42974., -72201.8, 275079., -78655.1, -34661.9, -35915.7, 43006.7, -53588.2}, {-62448.2, 10043.2, -78655.1, 302389., -32260., -33427., -73774.7, -31704.2}, {-16613.7, -28424.1, -34661.9, -32260., 277938., -64534.4, -84319.8, -16783.6}, {-17214.6, -29452.3, -35915.7, -33427., -64534.4, 285657., -87369.9, -17390.7}, {-30518.2, -56218., 43006.7, -73774.7, -84319.8, -87369.9, 286871., 2671.42}, {6929.51, -603.994, -53588.2, -31704.2, -16783.6, -17390.7, 2671.42, 110349.}};
+static const double cov_matrix_DB[8][8] = {{227769., -41846.3, -40362.3, -47812.4, -27329.1, -28167.5, -36760.1, -4717.67}, {-41846.3,  226081., -48693.6, -13401.6, -33177., -34194.9, -45118.2, -8794.45}, {-40362.3, -48693.6, 248910., -50317.3, -33318.8, -34341.,  1632.37, -43178.4}, {-47812.4, -13401.6, -50317.3,  264211., -35582.6, -36674.2, -51460.3, -28573.2}, {-27329.1, -33177., -33318.8, -35582.6,  279105., -58891.5, -69652.6, -20500.9}, {-28167.5, -34194.9, -34341., -36674.2, -58891.5,  285861., -71789.5, -21129.8}, {-36760.1, -45118.2,  1632.37, -51460.3, -69652.6, -71789.5,  279523., -5639.05}, {-4717.67, -8794.45, -43178.4, -28573.2, -20500.9, -21129.8, -5639.05, 132478.}};
 
 /********************
 *  INPUTS FOR RENO  *
@@ -167,23 +167,20 @@ static const double *RENOFs[8] = {RENO0, RENO1, RENO2, RENO3, RENO4, RENO5,
 
 /* These are the ratios of data/prediction for each of the bins */
 
-static const double RENOdata[8] = {0.9477, 0.9531, 0.9491, 0.9455, 0.9504, 0.9480,
-		0.9493, 0.9447};
+static const double RENOdata[8] = {0.9464, 0.9517, 0.9478, 0.9442, 0.9490, 0.9467, 0.9479, 0.9433};
 
 /*
   The ratio of the RENO data with respect to the new flux calculation
 */
 
-static const double RENOdataSM[8] = {0.9858, 0.9923, 0.9901, 0.9857, 0.9900, 0.9881, 
-		0.9871, 0.9814};
+static const double RENOdataSM[8] = {0.9839, 0.9907, 0.9873, 0.9842, 0.9900, 0.9880, 0.9900, 0.9865};
 
-static const double RENOdataHKSS[8] = {0.9416, 0.9468, 0.9438, 0.9388, 0.9420, 0.9393,
-		0.9373, 0.9303};
+static const double RENOdataHKSS[8] = {0.9375, 0.9427, 0.9388, 0.9352, 0.9400, 0.9377, 0.9389, 0.9344};
 
 /* 
-  The (inverse of the) covariance matrix for RENO (cov_matrix_RENO), taken from the
-  supplementary material to arXiv:1806.00574, including both systematic and statistical
-  correlations. The ordering follows the ordering of the flux fractions laid out above.
+  The (inverse of the) covariance matrix for RENO (cov_matrix_RENO), including both
+  systematic and statistical correlations. The ordering follows the ordering of the flux
+  fractions laid out above.
 */
 
 static const double cov_matrix_RENO[8][8]={{112371., -16135.6, -16302., -16387.4, -14796.4, -16616.9, -16681.5, -15143.6}, {-16135.6, 102807., -14681.8, -14758.8, -13325.9, -14965.5, -15023.7, -13638.6}, {-16302., -14681.8, 103716., -14911., -13463.3, -15119.8, -15178.6, -13779.2}, {-16387.4, -14758.8, -14911., 104182., -13533.9, -15199.1, -15258.2, -13851.5}, {-14796.4, -13325.9, -13463.3, -13533.9, 95380.4, -13723.4, -13776.8, -12506.6}, {-16616.9, -14965.5, -15119.8, -15199.1, -13723.4, 105427., -15471.8, -14045.4}, {-16681.5, -15023.7, -15178.6, -15258.2, -13776.8, -15471.8, 105777., -14100.1}, {-15143.6, -13638.6, -13779.2, -13851.5, -12506.6, -14045.4, -14100.1, 97325.3}};
@@ -194,10 +191,7 @@ static const double cov_matrix_RENO[8][8]={{112371., -16135.6, -16302., -16387.4
 
 /* 
   The (inverse of the) correlation matrix of the normalization of the HM fluxes (V_inv).
-  This has been calculated externally using Mathematica using Table III in
-  arXiv:1703.00860
-
-  I'm assuming that this also applies to Daya Bay -- I can't think of why it wouldn't...
+  This has been calculated externally using Mathematica using Table III.
 
   I'm assuming these theoretical errors still apply to the summation method calculation;
   this is almost certainly not correct, but let's roll with it!

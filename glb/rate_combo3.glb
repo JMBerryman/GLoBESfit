@@ -120,10 +120,10 @@ $target_mass = 	        19.941  /* tons (fiducial mass) */
 /* ####### Energy window ####### */
 
 $emin = 	        0.00178	/* GeV */
-$emax = 	        0.00868	/* GeV */
-$bins =			69
+$emax = 	        0.01000	/* GeV */
+$bins =			1
 
-$sampling_points = 484
+$sampling_points = 201
 
 /* ######## Baseline setting ######## */
 
@@ -251,10 +251,10 @@ $target_mass = 	        19.967  /* tons (fiducial mass) */
 /* ####### Energy window ####### */
 
 $emin = 	        0.00178	/* GeV */
-$emax = 	        0.00868	/* GeV */
-$bins =			69
+$emax = 	        0.01000	/* GeV */
+$bins =			1
 
-$sampling_points = 484
+$sampling_points = 201
 
 /* ######## Baseline setting ######## */
 
@@ -382,10 +382,10 @@ $target_mass = 	        19.891  /* tons (fiducial mass) */
 /* ####### Energy window ####### */
 
 $emin = 	        0.00178	/* GeV */
-$emax = 	        0.00868	/* GeV */
-$bins =			69
+$emax = 	        0.01000	/* GeV */
+$bins =			1
 
-$sampling_points = 484
+$sampling_points = 201
 
 /* ######## Baseline setting ######## */
 
@@ -513,10 +513,10 @@ $target_mass = 	        19.944  /* tons (fiducial mass) */
 /* ####### Energy window ####### */
 
 $emin = 	        0.00178	/* GeV */
-$emax = 	        0.00868	/* GeV */
-$bins =			69
+$emax = 	        0.01000	/* GeV */
+$bins =			1
 
-$sampling_points = 484
+$sampling_points = 201
 
 /* ######## Baseline setting ######## */
 
@@ -672,7 +672,7 @@ $target_mass = 	        19.944  /* tons (fiducial mass) */
 
 $bins = 		1
 $emin = 	        0.0008	/* GeV */
-$emax = 	        0.008	/* GeV */
+$emax = 	        0.0100	/* GeV */
 
 $sampling_points=201
 

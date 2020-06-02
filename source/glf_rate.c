@@ -560,7 +560,6 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
 *                                    *
 **************************************/
 
-
   for(i=0;i<glbGetNumOfOscParams();i++) osc[i]=0; 
 
 /*
