@@ -685,9 +685,10 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
   /* The simulated data are computed */
   glbSetOscillationParameters(true_values);
   glbSetRates();
-  double res;
 
+  double res;
   double thetheta;
+
   /*switching off the atmospheric prior */ 
   glbSetDensityParams(input_errors,0,GLB_ALL);
   glbSetInputErrors(input_errors);
@@ -751,13 +752,14 @@ glbDefineOscEngine(NUMP, &glf_four_state_probability_matrix,
 	    count++;
 	   
 	    progress=count/pow(resolution+1,2)*100;
+
 	    /* Compute Chi^2 for all loaded experiments and all rules */
 	    res=glbChiSys(test_values,GLB_ALL,GLB_ALL);
+
 	    if (arguments.write == YES){ fprintf(output,"%f %f %f %f %f %f %f \n",
-			x,y,res, glf_systematic[0], glf_systematic[1], 
+			x, y, res, glf_systematic[0], glf_systematic[1], 
 			glf_systematic[2], glf_systematic[3]);}
-			else{
-			  fprintf(output,"%f %f %f\n",x,y,res); }
+	    else{ fprintf(output,"%f %f %f\n",x,y,res); }
 	  }
     }
 
